@@ -37,7 +37,7 @@ const Navbar = () => {
   };
   useEffect(() => {
     getAddedCart();
-  }, []);
+  }, [count]);
   return (
     <div className="md:h-[110px] h-[90px] bg-gray-50  w-full flex justify-around items-center">
       <div className="logo-name flex text-[40px] items-center space-x-2">

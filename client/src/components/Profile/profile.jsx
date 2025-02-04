@@ -18,6 +18,11 @@ const Profile = () => {
   const [file, setFile] = useState(null);
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleLogout = async () => {
+    localStorage.clear("user");
+    toast("Logout Successfully");
+    navigate("/Login");
+  };
 
   const handleModalClose = () => {
     setIsModalOpen(false);
@@ -69,8 +74,8 @@ const Profile = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-[#D5EAEC] flex flex-col">
       <Navbar />
-      <div className="flex justify-center items-center flex-1 px-5 py-10 space-x-9 md:space-x-16 lg:space-x-24">
-        <div className="h-auto w-[90vw] sm:w-[60vw] md:w-[30vw] bg-white rounded-xl shadow-2xl border border-gray-300 flex flex-col justify-evenly items-center p-8 md:p-10 space-y-6">
+      <div className="flex justify-center md:flex-row flex-col items-center flex-1 px-5 py-10 space-x-9 md:space-x-16 lg:space-x-24">
+        <div className="h-auto w-[90vw] sm:w-[60vw] md:w-[30vw] gap-5 bg-white rounded-xl shadow-2xl border border-gray-300 flex flex-col justify-evenly items-center p-8 md:p-10 space-y-6">
           <div className="bg-gradient-to-r from-indigo-500 to-blue-400 p-5 rounded-full shadow-xl">
             <FaUser color="white" size={60} />
           </div>
@@ -82,10 +87,18 @@ const Profile = () => {
             <div>
               <b className="text-gray-900">📧 Email:</b> {user.email}
             </div>
+            <div>
+              <button
+                onClick={handleLogout}
+                className="bg-red-500 text-[15px] text-white px-2 py-1 font-[500]  rounded-md"
+              >
+                Logout
+              </button>
+            </div>
           </div>
         </div>
 
-        <div className="w-[80vw] sm:w-[30vw] md:w-[20vw] h-auto bg-white rounded-xl shadow-2xl border border-gray-300 flex flex-col items-center justify-evenly p-6 space-y-4">
+        <div className="w-[90vw] text-center  sm:w-[30vw] mt-5 md:w-[20vw] h-auto bg-white rounded-xl shadow-2xl border border-gray-300 flex flex-col items-center justify-evenly p-6 space-y-4">
           <Link
             to="/Add-To-Cart"
             className="text-blue-600 font-semibold text-lg hover:text-blue-800 transition duration-300 ease-in-out transform hover:scale-105"
@@ -107,7 +120,7 @@ const Profile = () => {
             </h1>
             <button
               onClick={() => setIsModalOpen(true)}
-              className="px-6 py-2 rounded-md bg-lime-700 text-white text-lg hover:bg-lime-800 transition duration-300 ease-in-out transform hover:scale-105"
+              className="px-6 py-2 rounded-md bg-blue-600 text-white text-lg hover:bg-lime-800 transition duration-300 ease-in-out transform hover:scale-105"
             >
               Upload New Painting
             </button>

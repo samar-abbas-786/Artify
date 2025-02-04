@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Navbar from "../Navbar/navbar";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
@@ -10,6 +11,7 @@ const SignUp = () => {
   const [name, setName] = useState();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState();
+  const naviagate = useNavigate();
 
   const handleSignup = async () => {
     try {
@@ -22,6 +24,7 @@ const SignUp = () => {
       console.log(response.data);
       localStorage.setItem("token", response.data.token);
       toast.success(response.data.message);
+      naviagate("/Login");
     } catch (error) {
       console.log("Error occured in Signup", error);
       toast.error(error.message);

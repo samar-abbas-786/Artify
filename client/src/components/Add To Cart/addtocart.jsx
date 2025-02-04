@@ -46,6 +46,7 @@ const AddToCart = () => {
       );
       toast(response.data.message);
       setAdded((prev) => prev.filter((item) => item._id !== id));
+      window.location.reload(false);
     } catch (error) {
       toast(error.message);
     }
@@ -109,6 +110,7 @@ const AddToCart = () => {
       setAddress(response.data.getAddress);
       toast.success(response.data.message);
       setIsModalOpen(false);
+      window.location.reload(false);
     } catch (error) {
       toast.error(error.message);
     }

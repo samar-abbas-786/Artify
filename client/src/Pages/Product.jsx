@@ -9,40 +9,40 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { AuthContext } from "../Context/authContext";
 
-const SidePart = () => {
-  const [landscape, setLandscape] = useState(false);
-  const [portrait, setPortrait] = useState(false);
+// const SidePart = () => {
+//   const [landscape, setLandscape] = useState(false);
+//   const [portrait, setPortrait] = useState(false);
 
-  return (
-    <div className="w-[20vw]  text-center flex flex-col items-center h-screen border-r-black border-[1px] space-y-5">
-      <h1 className="text-xl font-poppins font-semibold p-5">
-        Shop By Category
-      </h1>
-      <button
-        onClick={() => setLandscape(!landscape)}
-        className="text-lg font-poppins flex items-center space-x-1"
-      >
-        <span>Landscape</span>
-        {!landscape ? (
-          <HiOutlinePlus />
-        ) : (
-          <BsCheck2Circle className="text-green-500" />
-        )}
-      </button>
-      <button
-        onClick={() => setPortrait(!portrait)}
-        className="text-lg font-poppins flex items-center space-x-1"
-      >
-        <span>Portrait</span>
-        {!portrait ? (
-          <HiOutlinePlus />
-        ) : (
-          <BsCheck2Circle className="text-green-500" />
-        )}
-      </button>
-    </div>
-  );
-};
+//   return (
+//     <div className="w-[20vw]  text-center flex flex-col items-center h-screen border-r-black border-[1px] space-y-5">
+//       <h1 className="text-xl font-poppins font-semibold p-5">
+//         Shop By Category
+//       </h1>
+//       <button
+//         onClick={() => setLandscape(!landscape)}
+//         className="text-lg font-poppins flex items-center space-x-1"
+//       >
+//         <span>Landscape</span>
+//         {!landscape ? (
+//           <HiOutlinePlus />
+//         ) : (
+//           <BsCheck2Circle className="text-green-500" />
+//         )}
+//       </button>
+//       <button
+//         onClick={() => setPortrait(!portrait)}
+//         className="text-lg font-poppins flex items-center space-x-1"
+//       >
+//         <span>Portrait</span>
+//         {!portrait ? (
+//           <HiOutlinePlus />
+//         ) : (
+//           <BsCheck2Circle className="text-green-500" />
+//         )}
+//       </button>
+//     </div>
+//   );
+// };
 
 const Product = () => {
   // const paintings = Array(10).fill(null);
@@ -87,17 +87,20 @@ const Product = () => {
   }, []);
 
   return (
-    <div>
+    <div className="pb-20">
       {" "}
       <Navbar />
       <div className=" w-full h-full flex-col flex justify-between">
-        <div className="md:w-[20vw] w-[100vw] fixed left-0">
+        {/* <div className="md:w-[20vw] w-[100vw] fixed left-0">
           {" "}
           <SidePart />
-        </div>
-        <div className="ml-[20vw] mt-[10px] all-images flex gap-8 justify-evenly flex-wrap p-5 w-[80vw]">
+        </div> */}
+        <div className=" mt-[10px] all-images flex md:flex-row flex-col items-center gap-10  md:gap-8 justify-evenly flex-wrap p-5 w-full">
           {Painting.map((painting, index) => (
-            <div key={index} className="single-image w-[20vw] border-[1px] ">
+            <div
+              key={index}
+              className="single-image md:w-[20vw] w-[60vw]  border-[1px] "
+            >
               <img
                 className="w-full h-[300px] object-fill"
                 src={`http://localhost:8080/uploads/${painting.image}`}
