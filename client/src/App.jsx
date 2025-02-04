@@ -9,6 +9,7 @@ import SignUp from "./components/Authentication/signup";
 import Login from "./components/Authentication/login";
 import Profile from "./components/Profile/profile";
 import MyOrder from "./components/Orders/myorder";
+import AddNewPainting from "./components/Admin/addnewpainting";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/Login" Component={Login} />
         <Route path="/Profile" Component={Profile} />
         <Route path="/MyOrder" Component={MyOrder} />
+        <Route path="/AddNewPainting" Component={AddNewPainting} />
 
         <Route path="*" Component={Home} />
       </Routes>

@@ -48,7 +48,7 @@ const MyOrder = () => {
               >
                 {/* Order Image */}
                 <img
-                  src={`http://localhost:8080/uploads/${order.image}`}
+                  src={`http://localhost:8080/uploads/${order?.image}`}
                   alt={order.name}
                   className="w-24 h-24 rounded-lg shadow-md object-cover"
                 />
