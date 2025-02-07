@@ -28,7 +28,7 @@ import jwt from "jsonwebtoken";
 
 export const CheckToken = async (req, res, next) => {
   const cookieName = req.cookies?.token;
-  console.log("cookieName", cookieName);
+  // console.log("cookieName", cookieName);
   // if (!cookieName) {
   //   return;
   // }
