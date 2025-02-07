@@ -134,3 +134,19 @@ export const RemovefromCart = async (req, res) => {
   // console.log(removed);
   res.status(200).json({ message: "Removed from Cart Successfully", removed });
 };
+
+export const getNewArrival = async (req, res) => {
+  try {
+    const painting = await Painting.find().sort({ createdAt: -1 }).limit(4);
+    if (!painting) {
+      return res
+        .status(400)
+        .json({ message: "No Painting found in New Arrival" });
+    }
+    return res
+      .status(200)
+      .json({ message: "Successfully found New Arrival", painting });
+  } catch (error) {
+    return;
+  }
+};

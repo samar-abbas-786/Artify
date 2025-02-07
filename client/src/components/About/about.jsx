@@ -1,12 +1,13 @@
 import React from "react";
 import Navbar from "../Navbar/navbar";
 import { FaWhatsapp } from "react-icons/fa";
+import BottomNavbar from "../Navbar/bottom-nav";
 
 const About = () => {
   return (
     <>
       <Navbar />
-      <section className="py-12 bg-gray-100 pb-16">
+      <section className="py-12 bg-gray-100 md:pb-8 pb-32">
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-1/2">
@@ -55,6 +56,9 @@ const About = () => {
           </div>
         </div>
       </section>
+      <div className="block md:hidden">
+        <BottomNavbar />
+      </div>
     </>
   );
 };

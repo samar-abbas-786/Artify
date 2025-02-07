@@ -23,6 +23,10 @@ const paintingSchema = new mongoose.Schema({
     ref: "User",
     require: true,
   },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 const Painting = mongoose.model("Painting", paintingSchema);

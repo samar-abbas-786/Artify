@@ -10,6 +10,8 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import BottomNavbar from "../Navbar/bottom-nav";
+
 const Profile = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const [name, setName] = useState("");
@@ -18,10 +20,10 @@ const Profile = () => {
   const [file, setFile] = useState(null);
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handleLogout = async () => {
-    const response = await axios.get("/api/user/Logout");
-    console.log(response.data);
-    localStorage.clear("user");
+    await axios.get("/api/user/Logout");
+    localStorage.clear();
     toast("Logout Successfully");
     navigate("/Login");
   };
@@ -30,7 +32,7 @@ const Profile = () => {
     setIsModalOpen(false);
   };
 
-  const userID = JSON.parse(localStorage.getItem("user"))?._id; // Ensure you're using the correct user ID
+  const userID = user?._id;
 
   const UploadPainting = async () => {
     if (!name || !price || !mode || !file) {
@@ -46,81 +48,72 @@ const Profile = () => {
     formData.append("image", file);
 
     try {
-      const response = await axios.post("/api/painting/uploadPainting", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      // console.log("Response", response.data.message);
+      const response = await axios.post(
+        "/api/painting/uploadPainting",
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
       handleModalClose();
-
       toast.success(response.data.message);
-      setFile("");
+      setFile(null);
       setMode("");
       setName("");
       setPrice("");
     } catch (error) {
       console.error("Error uploading painting", error);
-      toast.error(error.messsage);
-      setFile("");
-      setMode("");
-      setName("");
-      setPrice("");
+      toast.error("Error uploading painting");
     }
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-[#D5EAEC] flex flex-col">
       <Navbar />
-      <div className="flex justify-center md:flex-row flex-col items-center flex-1 px-5 py-10 space-x-9 md:space-x-16 lg:space-x-24">
-        <div className="h-auto w-[90vw] sm:w-[60vw] md:w-[30vw] gap-5 bg-white rounded-xl shadow-2xl border border-gray-300 flex flex-col justify-evenly items-center p-8 md:p-10 space-y-6">
-          <div className="bg-gradient-to-r from-indigo-500 to-blue-400 p-5 rounded-full shadow-xl">
+      <div className="flex flex-col md:flex-row justify-center items-center flex-1 px-5 py-10 gap-6 md:gap-12 lg:gap-16 pb-32">
+        <div className="w-full sm:w-[60vw] md:w-[30vw] bg-white rounded-xl shadow-xl border border-gray-300 flex flex-col items-center p-6 md:p-8 space-y-6">
+          <div className="bg-gradient-to-r from-indigo-500 to-blue-400 p-5 rounded-full shadow-lg">
             <FaUser color="white" size={60} />
           </div>
-
-          <div className="font-inter text-lg text-gray-800 font-semibold flex flex-col justify-evenly h-[60%] gap-4">
+          <div className="text-lg text-gray-800 font-semibold space-y-4 text-center md:text-left">
             <div>
-              <b className="text-gray-900">👤 Name:</b> {user?.username}
+              <b>👤 Name:</b> {user?.username}
             </div>
             <div>
-              <b className="text-gray-900">📧 Email:</b> {user?.email}
+              <b>📧 Email:</b> {user?.email}
             </div>
-            <div>
-              {user && (
-                <button
-                  onClick={handleLogout}
-                  className="bg-red-500 text-[15px] text-white px-2 py-1 font-[500]  rounded-md"
-                >
-                  Logout
-                </button>
-              )}
-            </div>
+            {user && (
+              <button
+                onClick={handleLogout}
+                className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 transition"
+              >
+                Logout
+              </button>
+            )}
           </div>
         </div>
 
-        <div className="w-[90vw] text-center  sm:w-[30vw] mt-5 md:w-[20vw] h-auto bg-white rounded-xl shadow-2xl border border-gray-300 flex flex-col items-center justify-evenly p-6 space-y-4">
+        <div className="w-full sm:w-[30vw] md:w-[20vw] bg-white rounded-xl shadow-xl border border-gray-300 flex flex-col items-center p-6 space-y-4">
           <Link
             to="/Add-To-Cart"
-            className="text-blue-600 font-semibold text-lg hover:text-blue-800 transition duration-300 ease-in-out transform hover:scale-105"
+            className="text-blue-600 font-semibold text-lg hover:text-blue-800 transition"
           >
             🛒 My Cart
           </Link>
           <Link
             to="/MyOrder"
-            className="text-purple-600 font-semibold text-lg hover:text-purple-800 transition duration-300 ease-in-out transform hover:scale-105"
+            className="text-purple-600 font-semibold text-lg hover:text-purple-800 transition"
           >
             📦 My Orders
           </Link>
         </div>
 
-        {user && user?.role === "admin" && (
-          <div className="admin p-4 mt-8 bg-white rounded-xl shadow-lg w-[80vw] sm:w-[30vw] md:w-[20vw] flex flex-col justify-evenly items-center space-y-4">
-            <h1 className="font-poppins text-xl font-bold text-gray-800">
-              Admin Section
-            </h1>
+        {user?.role === "admin" && (
+          <div className="w-full sm:w-[30vw] md:w-[20vw] bg-white rounded-xl shadow-xl p-6 flex flex-col items-center space-y-4">
+            <h1 className="text-xl font-bold text-gray-800">Admin Section</h1>
             <button
               onClick={() => setIsModalOpen(true)}
-              className="px-6 py-2 rounded-md bg-blue-600 text-white text-lg hover:bg-lime-800 transition duration-300 ease-in-out transform hover:scale-105"
+              className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-800 transition"
             >
               Upload New Painting
             </button>
@@ -129,62 +122,58 @@ const Profile = () => {
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white w-[400px] p-6 rounded-lg shadow-lg transform transition-all duration-300">
+        <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white w-[90%] sm:w-[400px] p-6 rounded-lg shadow-lg">
             <h2 className="text-2xl font-bold text-gray-800 mb-4">
               Add New Painting
             </h2>
             <input
               type="file"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md mb-4"
+              className="w-full border px-3 py-2 rounded-md mb-4"
               onChange={(e) => setFile(e.target.files[0])}
             />
             <input
               type="text"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md mb-4"
-              placeholder="Enter the Name of Painting"
+              className="w-full border px-3 py-2 rounded-md mb-4"
+              placeholder="Enter Painting Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
             <input
               type="number"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md mb-4"
+              className="w-full border px-3 py-2 rounded-md mb-4"
               placeholder="Enter Price"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
             />
-            <div className="mb-4">
-              <FormControl component="fieldset">
-                <FormLabel component="legend">Select Mode</FormLabel>
-                <RadioGroup
-                  aria-label="mode"
-                  value={mode}
-                  onChange={(e) => setMode(e.target.value)}
-                  name="mode"
-                >
-                  <FormControlLabel
-                    value="portrait"
-                    control={<Radio />}
-                    label="Portrait"
-                  />
-                  <FormControlLabel
-                    value="landscape"
-                    control={<Radio />}
-                    label="Landscape"
-                  />
-                </RadioGroup>
-              </FormControl>
-            </div>
-            <div className="flex justify-end gap-4">
+            <FormControl component="fieldset">
+              <FormLabel>Select Mode</FormLabel>
+              <RadioGroup
+                value={mode}
+                onChange={(e) => setMode(e.target.value)}
+              >
+                <FormControlLabel
+                  value="portrait"
+                  control={<Radio />}
+                  label="Portrait"
+                />
+                <FormControlLabel
+                  value="landscape"
+                  control={<Radio />}
+                  label="Landscape"
+                />
+              </RadioGroup>
+            </FormControl>
+            <div className="flex justify-end gap-4 mt-4">
               <button
                 onClick={UploadPainting}
-                className="px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700"
+                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
               >
                 Add Painting
               </button>
               <button
                 onClick={handleModalClose}
-                className="px-4 py-2 text-white bg-red-600 rounded-md hover:bg-red-700"
+                className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700"
               >
                 Cancel
               </button>
@@ -192,6 +181,10 @@ const Profile = () => {
           </div>
         </div>
       )}
+
+      <div className="block md:hidden">
+        <BottomNavbar />
+      </div>
       <ToastContainer />
     </div>
   );
