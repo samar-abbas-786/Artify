@@ -12,7 +12,7 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/user/Login",
+        "/api/user/Login",
         {
           email,
           password,

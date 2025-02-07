@@ -8,6 +8,7 @@ import { FiArrowRight } from "react-icons/fi";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { AuthContext } from "../Context/authContext";
+import { useNavigate } from "react-router-dom";
 
 // const SidePart = () => {
 //   const [landscape, setLandscape] = useState(false);
@@ -46,19 +47,26 @@ import { AuthContext } from "../Context/authContext";
 
 const Product = () => {
   // const paintings = Array(10).fill(null);
+  const navigate = useNavigate();
 
   const [Painting, setPainting] = useState([]);
   const user = JSON.parse(localStorage.getItem("user"));
   // const [token, setToken] = useState();
   // useEffect(() => {
-  //   setToken(localStorage.getItem("token"));
+  //   setToken(localStorage.getItem("token"));A
   // }, []);
   const handleCart = async (paintingID) => {
     try {
+      if (!user) {
+        navigate("/Login");
+
+        toast.error("Please Login First");
+        return;
+      }
       // console.log(user._id);
 
       const response = await axios.post(
-        `http://localhost:8080/cart/addToCart?paintingID=${paintingID}&userID=${user._id}`
+        `/api/cart/addToCart?paintingID=${paintingID}&userID=${user._id}`
       );
       console.log(response.data);
 
@@ -66,7 +74,7 @@ const Product = () => {
       // window.location.reload(false);
     } catch (error) {
       console.log("error occured on handleCart");
-      toast(error.message);
+      toast.info(error.message);
       // window.location.reload(false);
     }
   };
@@ -74,9 +82,7 @@ const Product = () => {
   useEffect(() => {
     const fetchPaintings = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:8080/painting/getAllPainting"
-        );
+        const response = await axios.get("/api/painting/getAllPainting");
         setPainting(response.data.allPainting);
       } catch (error) {
         console.error("Error fetching paintings:", error);

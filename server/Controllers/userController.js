@@ -74,3 +74,7 @@ export const getUserById = async (req, res) => {
 
   res.status(200).json({ message: "User got successfully", user });
 };
+
+export const Logout = async (req, res) => {
+  res.clearCookie("token").json({ message: "Logout Successfully" });
+};

@@ -10,13 +10,14 @@ import cartRouter from "./Routes/cartRoutes.js";
 import orderRouter from "./Routes/orderRoutes.js";
 import userRouter from "./Routes/userRoutes.js";
 import addressRouter from "./Routes/addressRoutes.js";
+import contactRouter from "./Routes/conatctRoutes.js";
 configDotenv();
 database();
 app.use("/uploads", express.static("uploads"));
 
 app.use(
   cors({
-    origin: "http://localhost:5173/",
+    origin: true,
     credentials: true,
   })
 );
@@ -24,11 +25,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-app.use("/painting", paintingRouter);
-app.use("/cart", cartRouter);
-app.use("/order", orderRouter);
-app.use("/user", userRouter);
-app.use("/address", addressRouter);
+app.use("/api/painting", paintingRouter);
+app.use("/api/cart", cartRouter);
+app.use("/api/order", orderRouter);
+app.use("/api/user", userRouter);
+app.use("/api/address", addressRouter);
+app.use("/api/contact", contactRouter);
 
 app.get("/", (req, res) => {
   res.status(200).send("Hello World!! This is Artify ❤️");

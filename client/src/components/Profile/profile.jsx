@@ -19,6 +19,8 @@ const Profile = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleLogout = async () => {
+    const response = await axios.get("/api/user/Logout");
+    console.log(response.data);
     localStorage.clear("user");
     toast("Logout Successfully");
     navigate("/Login");
@@ -28,7 +30,7 @@ const Profile = () => {
     setIsModalOpen(false);
   };
 
-  const userID = JSON.parse(localStorage.getItem("user"))._id; // Ensure you're using the correct user ID
+  const userID = JSON.parse(localStorage.getItem("user"))?._id; // Ensure you're using the correct user ID
 
   const UploadPainting = async () => {
     if (!name || !price || !mode || !file) {
@@ -44,15 +46,11 @@ const Profile = () => {
     formData.append("image", file);
 
     try {
-      const response = await axios.post(
-        "http://localhost:8080/painting/uploadPainting",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await axios.post("/api/painting/uploadPainting", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       // console.log("Response", response.data.message);
       handleModalClose();
 
@@ -82,18 +80,20 @@ const Profile = () => {
 
           <div className="font-inter text-lg text-gray-800 font-semibold flex flex-col justify-evenly h-[60%] gap-4">
             <div>
-              <b className="text-gray-900">👤 Name:</b> {user.username}
+              <b className="text-gray-900">👤 Name:</b> {user?.username}
             </div>
             <div>
-              <b className="text-gray-900">📧 Email:</b> {user.email}
+              <b className="text-gray-900">📧 Email:</b> {user?.email}
             </div>
             <div>
-              <button
-                onClick={handleLogout}
-                className="bg-red-500 text-[15px] text-white px-2 py-1 font-[500]  rounded-md"
-              >
-                Logout
-              </button>
+              {user && (
+                <button
+                  onClick={handleLogout}
+                  className="bg-red-500 text-[15px] text-white px-2 py-1 font-[500]  rounded-md"
+                >
+                  Logout
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -113,7 +113,7 @@ const Profile = () => {
           </Link>
         </div>
 
-        {user && user.role === "admin" && (
+        {user && user?.role === "admin" && (
           <div className="admin p-4 mt-8 bg-white rounded-xl shadow-lg w-[80vw] sm:w-[30vw] md:w-[20vw] flex flex-col justify-evenly items-center space-y-4">
             <h1 className="font-poppins text-xl font-bold text-gray-800">
               Admin Section

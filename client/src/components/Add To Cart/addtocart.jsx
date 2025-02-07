@@ -27,7 +27,7 @@ const AddToCart = () => {
   const getAddedCart = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/cart/getAddtocart?userID=${user._id}`
+        `/api/cart/getAddtocart?userID=${user._id}`
       );
       if (response.data) {
         setAdded(response.data.flattenedPaintings);
@@ -42,9 +42,9 @@ const AddToCart = () => {
   const handleremovefromcart = async (id) => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/cart/RemovefromCart?paintingID=${id}&userID=${user._id}`
+        `/api/cart/RemovefromCart?paintingID=${id}&userID=${user._id}`
       );
-      toast(response.data.message);
+      // toast(response.data.message);
       setAdded((prev) => prev.filter((item) => item._id !== id));
       window.location.reload(false);
     } catch (error) {
@@ -65,15 +65,12 @@ const AddToCart = () => {
     }
 
     try {
-      const response = await axios.post(
-        "http://localhost:8080/order/createOrder",
-        {
-          paintingID,
-          quantity: quantities,
-          userID: user._id,
-          addressID: selectedAddress._id,
-        }
-      );
+      const response = await axios.post("/api/order/createOrder", {
+        paintingID,
+        quantity: quantities,
+        userID: user._id,
+        addressID: selectedAddress._id,
+      });
       // console.log("Clicked Placed");
       console.log(response.data);
 
@@ -87,7 +84,7 @@ const AddToCart = () => {
   const getAddresses = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/address/getAddressForUser?userID=${user._id}`
+        `/api/address/getAddressForUser?userID=${user._id}`
       );
       setGetAddress(response.data.getAddress);
       // toast.success(response.data.message);
@@ -98,14 +95,11 @@ const AddToCart = () => {
 
   const handleAddAddress = async () => {
     try {
-      const response = await axios.post(
-        "http://localhost:8080/address/createAddress",
-        {
-          address,
-          pincode,
-          userID: user._id,
-        }
-      );
+      const response = await axios.post("/api/address/createAddress", {
+        address,
+        pincode,
+        userID: user._id,
+      });
       // setGetAddress((prev) => [...prev, response.data.newAddress]);
       setAddress(response.data.getAddress);
       toast.success(response.data.message);

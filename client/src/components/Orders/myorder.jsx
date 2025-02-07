@@ -10,7 +10,7 @@ const MyOrder = () => {
   const getMyOrder = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/order/getMyOrder?userID=${user._id}`
+        `/api/order/getMyOrder?userID=${user._id}`
       );
       console.log(response.data);
       setOrders(response.data.flattenedPaintings);

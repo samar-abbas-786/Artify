@@ -25,7 +25,7 @@ const Navbar = () => {
 
   const getAddedCart = async () => {
     const response = await axios.get(
-      `http://localhost:8080/cart/getAddtocart?userID=${user._id}`
+      `/api/cart/getAddtocart?userID=${user._id}`
     );
     if (response) {
       console.log(response);
@@ -37,7 +37,7 @@ const Navbar = () => {
   };
   useEffect(() => {
     getAddedCart();
-  }, [count]);
+  }, []);
   return (
     <div className="md:h-[110px] h-[90px] bg-gray-50  w-full flex justify-around items-center">
       <div className="logo-name flex text-[40px] items-center space-x-2">

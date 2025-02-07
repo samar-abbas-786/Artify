@@ -1,22 +1,32 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [contact, setContact] = useState("");
+  const [message, setMessage] = useState("");
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (!name || !email || !contact || !message) {
+      toast.info("All Fields Are Required");
+    }
+    try {
+      const response = await axios.post("/api/contact/PostQuery", {
+        name,
+        email,
+        contact,
+        message,
+      });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert("Thank you for contacting us!");
-    setFormData({ name: "", email: "", phone: "", message: "" });
+      console.log(response.data);
+      toast.success(response.data.message);
+    } catch (error) {
+      console.log("Error on handle message on contact", error);
+      toast.error(error.message);
+    }
   };
 
   return (
@@ -38,8 +48,8 @@ const Contact = () => {
             <input
               type="text"
               name="name"
-              value={formData.name}
-              onChange={handleChange}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               placeholder=" "
               className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
             />
@@ -53,8 +63,8 @@ const Contact = () => {
             <input
               type="email"
               name="email"
-              value={formData.email}
-              onChange={handleChange}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder=" "
               className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
             />
@@ -66,10 +76,10 @@ const Contact = () => {
           {/* Phone */}
           <div className="relative group">
             <input
-              type="text"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
+              type="number"
+              name="contact"
+              value={contact}
+              onChange={(e) => setContact(e.target.value)}
               placeholder=" "
               className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
             />
@@ -82,8 +92,8 @@ const Contact = () => {
           <div className="relative group md:col-span-2">
             <textarea
               name="message"
-              value={formData.message}
-              onChange={handleChange}
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
               placeholder=" "
               rows="4"
               className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
@@ -104,6 +114,7 @@ const Contact = () => {
           </div>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 };
