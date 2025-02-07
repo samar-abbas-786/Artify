@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { FaPaintBrush } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
@@ -19,6 +19,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 const Navbar = () => {
   // const { token } = useContext(AuthContext);
+  const navigate = useNavigate();
   const [added, setAdded] = useState([]);
   const [count, setCount] = useState(0);
   const user = JSON.parse(localStorage.getItem("user"));
@@ -41,7 +42,10 @@ const Navbar = () => {
   return (
     <div className="md:h-[110px] h-[90px] bg-gray-50  w-full flex justify-around items-center">
       <div className="logo-name flex text-[40px] items-center space-x-2">
-        <span className="  tracking-widest  font-rubikVinyl font-[600] text-[#292f2f] ">
+        <span
+          onClick={() => navigate("/")}
+          className="  tracking-widest cursor-pointer  font-rubikVinyl font-[600] text-[#292f2f] "
+        >
           Artify
         </span>{" "}
         <FaPaintBrush />

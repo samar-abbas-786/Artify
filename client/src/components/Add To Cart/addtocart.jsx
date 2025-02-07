@@ -144,7 +144,7 @@ const AddToCart = () => {
 
                 <div className="flex-1 flex flex-col justify-center p-4">
                   <p className="text-xl font-semibold">{item.name}</p>
-                  <p className="text-lg font-bold text-green-600">
+                  <p className="text-lg font-bold text-orange-400">
                     ₹{item.price}
                   </p>
                 </div>
@@ -201,7 +201,7 @@ const AddToCart = () => {
           </FormControl>
           <button
             onClick={() => setIsModalOpen(true)}
-            className="p-1 bg-orange-400 px-2 py-1 rounded-sm mt-4"
+            className="p-1 bg-orange-400 text-white px-2 py-1 rounded-sm mt-4 font-[400]"
           >
             Add Address
           </button>

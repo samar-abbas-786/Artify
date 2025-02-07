@@ -103,24 +103,22 @@ const Product = () => {
         </div> */}
         <div className=" mt-[10px] all-images flex md:flex-row flex-col items-center gap-10  md:gap-8 justify-evenly flex-wrap p-5 w-full">
           {Painting.map((painting, index) => (
-            <div
-              key={index}
-              className="single-image md:w-[20vw] w-[60vw]  border-[1px] "
-            >
+            <div key={index} className="single-image md:w-[20vw] w-[60vw]">
               <img
                 className="w-full h-[300px] object-fill"
                 src={`http://localhost:8080/uploads/${painting.image}`}
                 alt={`Painting ${index + 1}`}
               />
-              <div className="flex items-center justify-between px-2 text-md font-serif p-2">
+              <div className="flex items-center justify-between px-2 bg-white text-md font-serif p-2">
                 <p className="opacity-100 duration-300 group-hover:opacity-95">
-                  Price :{" "}
-                  <span className="text-[#FCB080]">₹{painting.price}</span>
+                  <span className="text-[#262626] font-poppins font-[500]">
+                    ₹{painting.price}
+                  </span>
                 </p>
                 <Link className="flex items-center text-[12px] font-serif  font-[300]">
                   <button
                     onClick={() => handleCart(painting._id)}
-                    className="px-3 py-1 list-none rounded-sm bg-yellow-600 hover:bg-yellow-700 text-white text-[14px] font-poppins"
+                    className="text-gray-900 bg-gradient-to-r from-yellow-200 to-yellow-400 hover:bg-gradient-to-l hover:from-yellow-200 hover:to-yellow-500 focus:ring-4  dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-3 py-2.5 text-center me-2 mb-2 font-poppins"
                   >
                     Add to cart
                   </button>{" "}
