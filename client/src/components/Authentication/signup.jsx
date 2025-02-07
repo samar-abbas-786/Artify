@@ -22,7 +22,7 @@ const SignUp = () => {
       });
 
       console.log(response.data);
-      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("user", JSON.stringify(response.data.newUser));
       toast.success(response.data.message);
       naviagate("/Login");
     } catch (error) {

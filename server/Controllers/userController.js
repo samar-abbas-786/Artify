@@ -25,8 +25,10 @@ export const Signup = async (req, res) => {
       }
     );
     // console.log("token", token);
+    res.cookie("token", token, { httpOnly: true });
 
-    res.status(201).json({ message: "Suucessfully Sign up", token });
+
+    res.status(201).json({ message: "Suucessfully Sign up", newUser });
   } catch (error) {
     console.log("Error occured in sinnup", error);
   }
