@@ -88,7 +88,7 @@ const AddToCart = () => {
       );
       setGetAddress(response.data.getAddress);
     } catch (error) {
-      toast.error("Error fetching addresses: " + error.message);
+      // toast.error("Error fetching addresses: " + error.message);
     }
   };
 

@@ -43,12 +43,12 @@ const MyOrder = () => {
           <div className="w-full max-w-5xl flex flex-col gap-4">
             {orders.map((order) => (
               <div
-                key={order.id}
+                key={order._id}
                 className="flex items-center bg-white/90 backdrop-blur-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 p-4 w-full"
               >
                 {/* Order Image */}
                 <img
-                  src={`http://localhost:8080/uploads/${order?.image}`}
+                  src={`https://artify-backend-p679.onrender.com/uploads/${order?.image}`}
                   alt={order.name}
                   className="w-24 h-24 rounded-lg shadow-md object-cover"
                 />
