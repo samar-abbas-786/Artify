@@ -85,6 +85,8 @@ const Product = () => {
         const response = await axios.get(
           "https://artify-backend-p679.onrender.com/api/painting/getAllPainting"
         );
+        console.log("getRes", response.data);
+
         setPainting(response.data.allPainting);
       } catch (error) {
         console.error("Error fetching paintings:", error);
@@ -109,7 +111,7 @@ const Product = () => {
               <img
                 className="w-full h-[300px] object-fill"
                 src={`https://artify-backend-p679.onrender.com/uploads/${painting.image}`}
-                alt={`Painting ${index + 1}`}
+                alt={painting.name}
               />
               <div className="flex items-center justify-between px-2 bg-white text-md font-serif p-2">
                 <p className="opacity-100 duration-300 group-hover:opacity-95">
