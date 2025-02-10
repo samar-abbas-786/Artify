@@ -10,7 +10,7 @@ const MyOrder = () => {
   const getMyOrder = async () => {
     try {
       const response = await axios.get(
-        `/api/order/getMyOrder?userID=${user._id}`
+        `https://artify-backend-p679.onrender.com/api/order/getMyOrder?userID=${user._id}`
       );
       console.log(response.data);
       setOrders(response.data.flattenedPaintings);

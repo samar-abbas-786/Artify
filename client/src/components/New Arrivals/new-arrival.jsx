@@ -25,7 +25,7 @@ const NewArrival = () => {
       console.log(user._id);
 
       const response = await axios.post(
-        `/api/cart/addToCart?paintingID=${paintingID}&userID=${user._id}`
+        `https://artify-backend-p679.onrender.com/api/cart/addToCart?paintingID=${paintingID}&userID=${user._id}`
       );
       console.log(response.data);
       navigate("/Add-To-Cart");
@@ -40,7 +40,10 @@ const NewArrival = () => {
   const [newPainting, setNewPainting] = useState([]);
   const getNewArrival = async () => {
     try {
-      const response = await axios.get("/api/painting/getNewArrival");
+      const response = await axios.get(
+        "https://artify-backend-p679.onrender.com/api/painting/getNewArrival"
+      );
+      console.log("res", response);
 
       if (response) {
         setNewPainting(response.data.painting);

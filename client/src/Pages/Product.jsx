@@ -66,7 +66,7 @@ const Product = () => {
       // console.log(user._id);
 
       const response = await axios.post(
-        `/api/cart/addToCart?paintingID=${paintingID}&userID=${user._id}`
+        `https://artify-backend-p679.onrender.com/api/cart/addToCart?paintingID=${paintingID}&userID=${user._id}`
       );
       console.log(response.data);
 
@@ -82,7 +82,9 @@ const Product = () => {
   useEffect(() => {
     const fetchPaintings = async () => {
       try {
-        const response = await axios.get("/api/painting/getAllPainting");
+        const response = await axios.get(
+          "https://artify-backend-p679.onrender.com/api/painting/getAllPainting"
+        );
         setPainting(response.data.allPainting);
       } catch (error) {
         console.error("Error fetching paintings:", error);

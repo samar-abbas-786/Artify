@@ -22,7 +22,7 @@ const Profile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleLogout = async () => {
-    await axios.get("/api/user/Logout");
+    await axios.get("https://artify-backend-p679.onrender.com/api/user/Logout");
     localStorage.clear();
     toast("Logout Successfully");
     navigate("/Login");
@@ -49,7 +49,7 @@ const Profile = () => {
 
     try {
       const response = await axios.post(
-        "/api/painting/uploadPainting",
+        "https://artify-backend-p679.onrender.com/api/painting/uploadPainting",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },

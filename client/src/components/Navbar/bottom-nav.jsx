@@ -30,7 +30,7 @@ const BottomNavbar = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const getAddedCart = async () => {
     const response = await axios.get(
-      `/api/cart/getAddtocart?userID=${user._id}`
+      `https://artify-backend-p679.onrender.com/api/cart/getAddtocart?userID=${user._id}`
     );
     if (response) {
       // console.log(response);

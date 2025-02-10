@@ -15,11 +15,14 @@ const SignUp = () => {
 
   const handleSignup = async () => {
     try {
-      const response = await axios.post("/api/user/Signup", {
-        username: name,
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "https://artify-backend-p679.onrender.com/api/user/Signup",
+        {
+          username: name,
+          email,
+          password,
+        }
+      );
 
       console.log(response.data);
       localStorage.setItem("user", JSON.stringify(response.data.newUser));

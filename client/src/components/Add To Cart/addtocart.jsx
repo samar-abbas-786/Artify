@@ -26,7 +26,7 @@ const AddToCart = () => {
   const getAddedCart = async () => {
     try {
       const response = await axios.get(
-        `/api/cart/getAddtocart?userID=${user._id}`
+        `https://artify-backend-p679.onrender.com/api/cart/getAddtocart?userID=${user._id}`
       );
       if (!response) {
         return;
@@ -44,7 +44,7 @@ const AddToCart = () => {
   const handleremovefromcart = async (id) => {
     try {
       const response = await axios.get(
-        `/api/cart/RemovefromCart?paintingID=${id}&userID=${user._id}`
+        `https://artify-backend-p679.onrender.com/api/cart/RemovefromCart?paintingID=${id}&userID=${user._id}`
       );
       setAdded((prev) => prev.filter((item) => item._id !== id));
       window.location.reload(false);
@@ -66,12 +66,15 @@ const AddToCart = () => {
     }
 
     try {
-      const response = await axios.post("/api/order/createOrder", {
-        paintingID,
-        quantity: quantities,
-        userID: user._id,
-        addressID: selectedAddress._id,
-      });
+      const response = await axios.post(
+        "https://artify-backend-p679.onrender.com/api/order/createOrder",
+        {
+          paintingID,
+          quantity: quantities,
+          userID: user._id,
+          addressID: selectedAddress._id,
+        }
+      );
       toast.success(response.data.message);
     } catch (error) {
       toast.error(error.message);
@@ -81,7 +84,7 @@ const AddToCart = () => {
   const getAddresses = async () => {
     try {
       const response = await axios.get(
-        `/api/address/getAddressForUser?userID=${user._id}`
+        `https://artify-backend-p679.onrender.com/api/address/getAddressForUser?userID=${user._id}`
       );
       setGetAddress(response.data.getAddress);
     } catch (error) {
@@ -95,11 +98,14 @@ const AddToCart = () => {
       return;
     }
     try {
-      const response = await axios.post("/api/address/createAddress", {
-        address,
-        pincode,
-        userID: user._id,
-      });
+      const response = await axios.post(
+        "https://artify-backend-p679.onrender.com/api/address/createAddress",
+        {
+          address,
+          pincode,
+          userID: user._id,
+        }
+      );
       toast.success(response.data.message);
       setIsModalOpen(false);
       window.location.reload(false);
