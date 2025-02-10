@@ -6,7 +6,13 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/api": "https://artify-backend-p679.onrender.com",
+      "/api": {
+        target: "https://artify-backend-p679.onrender.com",
+        changeOrigin: true,
+        secure: false, // If backend uses HTTPS with self-signed certificate
+        rewrite: (path) => path.replace(/^\/api/, ""), // Removes `/api` from the request path
+      },
     },
   },
+  
 });
