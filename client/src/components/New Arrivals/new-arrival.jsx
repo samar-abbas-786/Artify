@@ -78,7 +78,7 @@ const NewArrival = () => {
               <div className="group border-[1px] border-black block1 shadow-black w-[70vw] md:w-[20vw] md:h-[350px] bg-gray-50">
                 <img
                   className="w-full h-[300px] object-fill"
-                  src={`http://localhost:8080/uploads/${painting.image}`}
+                  src={`https://artify-backend-p679.onrender.com/uploads/${painting.image}`}
                   alt={painting.name}
                 />
                 <div className="flex items-center justify-between px-2 text-lg font-serif p-2">

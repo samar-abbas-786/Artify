@@ -148,7 +148,7 @@ const AddToCart = () => {
               >
                 <img
                   className="w-56 h-56 object-cover rounded-lg"
-                  src={`http://localhost:8080/uploads/${item.image}`}
+                  src={`https://artify-backend-p679.onrender.com/uploads/${item.image}`}
                   alt="Product"
                 />
 

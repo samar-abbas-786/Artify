@@ -108,7 +108,7 @@ const Product = () => {
             <div key={index} className="single-image md:w-[20vw] w-[60vw]">
               <img
                 className="w-full h-[300px] object-fill"
-                src={`http://localhost:8080/uploads/${painting.image}`}
+                src={`https://artify-backend-p679.onrender.com/uploads/${painting.image}`}
                 alt={`Painting ${index + 1}`}
               />
               <div className="flex items-center justify-between px-2 bg-white text-md font-serif p-2">
