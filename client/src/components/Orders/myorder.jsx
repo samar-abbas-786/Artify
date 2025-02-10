@@ -46,14 +46,12 @@ const MyOrder = () => {
                 key={order._id}
                 className="flex items-center bg-white/90 backdrop-blur-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 p-4 w-full"
               >
-                {/* Order Image */}
                 <img
                   src={`https://artify-backend-ra4w.onrender.com/uploads/${order?.image}`}
                   alt={order.name}
                   className="w-24 h-24 rounded-lg shadow-md object-cover"
                 />
 
-                {/* Order Details */}
                 <div className="ml-6 flex-1">
                   <h2 className="text-xl font-semibold text-gray-800">
                     {order.name}
@@ -64,7 +62,6 @@ const MyOrder = () => {
                   <p className="text-sm text-gray-500">📅 {order.orderDate}</p>
                 </div>
 
-                {/* Order Status */}
                 <span
                   className={`px-5 py-2 rounded-full text-sm font-semibold uppercase tracking-wide ${
                     order.status === "Delivered"
