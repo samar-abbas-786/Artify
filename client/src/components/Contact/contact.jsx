@@ -14,12 +14,15 @@ const Contact = () => {
       toast.info("All Fields Are Required");
     }
     try {
-      const response = await axios.post("https://artify-backend-p679.onrender.com/api/contact/PostQuery", {
-        name,
-        email,
-        contact,
-        message,
-      });
+      const response = await axios.post(
+        "https://artify-backend-ra4w.onrender.com/api/contact/PostQuery",
+        {
+          name,
+          email,
+          contact,
+          message,
+        }
+      );
 
       console.log(response.data);
       toast.success(response.data.message);

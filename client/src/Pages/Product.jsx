@@ -66,7 +66,7 @@ const Product = () => {
       // console.log(user._id);
 
       const response = await axios.post(
-        `https://artify-backend-p679.onrender.com/api/cart/addToCart?paintingID=${paintingID}&userID=${user._id}`
+        `https://artify-backend-ra4w.onrender.com/api/cart/addToCart?paintingID=${paintingID}&userID=${user._id}`
       );
       console.log(response.data);
 
@@ -83,7 +83,7 @@ const Product = () => {
     const fetchPaintings = async () => {
       try {
         const response = await axios.get(
-          "https://artify-backend-p679.onrender.com/api/painting/getAllPainting"
+          "https://artify-backend-ra4w.onrender.com/api/painting/getAllPainting"
         );
         console.log("getRes", response.data);
 
@@ -110,7 +110,7 @@ const Product = () => {
             <div key={index} className="single-image md:w-[20vw] w-[60vw]">
               <img
                 className="w-full h-[300px] object-fill"
-                src={`https://artify-backend-p679.onrender.com/uploads/${painting.image}`}
+                src={`https://artify-backend-ra4w.onrender.com/uploads/${painting.image}`}
                 alt={painting.name}
               />
               <div className="flex items-center justify-between px-2 bg-white text-md font-serif p-2">

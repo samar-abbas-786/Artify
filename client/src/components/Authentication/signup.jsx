@@ -16,7 +16,7 @@ const SignUp = () => {
   const handleSignup = async () => {
     try {
       const response = await axios.post(
-        "https://artify-backend-p679.onrender.com/api/user/Signup",
+        "https://artify-backend-ra4w.onrender.com/api/user/Signup",
         {
           username: name,
           email,

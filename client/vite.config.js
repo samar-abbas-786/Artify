@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/samar": "https://artify-backend-p679.onrender.com",
+      "/samar": "https://artify-backend-ra4w.onrender.com",
     },
   },
 });

@@ -26,7 +26,7 @@ const AddToCart = () => {
   const getAddedCart = async () => {
     try {
       const response = await axios.get(
-        `https://artify-backend-p679.onrender.com/api/cart/getAddtocart?userID=${user._id}`
+        `https://artify-backend-ra4w.onrender.com/api/cart/getAddtocart?userID=${user._id}`
       );
       if (!response) {
         return;
@@ -44,7 +44,7 @@ const AddToCart = () => {
   const handleremovefromcart = async (id) => {
     try {
       const response = await axios.get(
-        `https://artify-backend-p679.onrender.com/api/cart/RemovefromCart?paintingID=${id}&userID=${user._id}`
+        `https://artify-backend-ra4w.onrender.com/api/cart/RemovefromCart?paintingID=${id}&userID=${user._id}`
       );
       setAdded((prev) => prev.filter((item) => item._id !== id));
       window.location.reload(false);
@@ -67,7 +67,7 @@ const AddToCart = () => {
 
     try {
       const response = await axios.post(
-        "https://artify-backend-p679.onrender.com/api/order/createOrder",
+        "https://artify-backend-ra4w.onrender.com/api/order/createOrder",
         {
           paintingID,
           quantity: quantities,
@@ -84,7 +84,7 @@ const AddToCart = () => {
   const getAddresses = async () => {
     try {
       const response = await axios.get(
-        `https://artify-backend-p679.onrender.com/api/address/getAddressForUser?userID=${user._id}`
+        `https://artify-backend-ra4w.onrender.com/api/address/getAddressForUser?userID=${user._id}`
       );
       setGetAddress(response.data.getAddress);
     } catch (error) {
@@ -99,7 +99,7 @@ const AddToCart = () => {
     }
     try {
       const response = await axios.post(
-        "https://artify-backend-p679.onrender.com/api/address/createAddress",
+        "https://artify-backend-ra4w.onrender.com/api/address/createAddress",
         {
           address,
           pincode,
@@ -148,7 +148,7 @@ const AddToCart = () => {
               >
                 <img
                   className="w-56 h-56 object-cover rounded-lg"
-                  src={`https://artify-backend-p679.onrender.com/uploads/${item.image}`}
+                  src={`https://artify-backend-ra4w.onrender.com/uploads/${item.image}`}
                   alt="Product"
                 />
 
