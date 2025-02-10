@@ -118,7 +118,7 @@ const Product = () => {
                 <Link className="flex items-center text-[12px] font-serif  font-[300]">
                   <button
                     onClick={() => handleCart(painting._id)}
-                    className="text-gray-900 bg-gradient-to-r from-yellow-200 to-yellow-400 hover:bg-gradient-to-l hover:from-yellow-200 hover:to-yellow-500 focus:ring-4  dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-3 py-2.5 text-center me-2 mb-2 font-poppins"
+                    className="text-gray-900 bg-gradient-to-r outline-none from-yellow-200 to-yellow-400 hover:bg-gradient-to-l hover:from-yellow-200 hover:to-yellow-500 font-medium rounded-lg text-sm px-3 py-2.5 text-center me-2 mb-2 font-poppins"
                   >
                     Add to cart
                   </button>{" "}

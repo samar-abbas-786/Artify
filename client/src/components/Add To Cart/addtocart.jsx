@@ -90,6 +90,10 @@ const AddToCart = () => {
   };
 
   const handleAddAddress = async () => {
+    if (!user) {
+      toast.error("Please Login First");
+      return;
+    }
     try {
       const response = await axios.post("/api/address/createAddress", {
         address,
