@@ -66,14 +66,12 @@ const Product = () => {
         return;
       }
       // console.log(user._id);
-      setLoading(true);
       const response = await axios.post(
         `https://artify-backend-ra4w.onrender.com/api/cart/addToCart?paintingID=${paintingID}&userID=${user._id}`
       );
       console.log(response.data);
 
       toast(response.data.message);
-      setLoading(false);
       // window.location.reload(false);
     } catch (error) {
       console.log("error occured on handleCart");
