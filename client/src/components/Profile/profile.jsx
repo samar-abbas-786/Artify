@@ -113,7 +113,7 @@ const Profile = () => {
             <h1 className="text-xl font-bold text-gray-800">Admin Section</h1>
             <button
               onClick={() => setIsModalOpen(true)}
-              className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-800 transition"
+              className="px-6 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-800 transition"
             >
               Upload New Painting
             </button>
@@ -167,7 +167,7 @@ const Profile = () => {
             <div className="flex justify-end gap-4 mt-4">
               <button
                 onClick={UploadPainting}
-                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                className="px-4 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-700"
               >
                 Add Painting
               </button>
