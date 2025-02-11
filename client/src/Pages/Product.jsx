@@ -73,6 +73,7 @@ const Product = () => {
       console.log(response.data);
 
       toast(response.data.message);
+      setLoading(false);
       // window.location.reload(false);
     } catch (error) {
       console.log("error occured on handleCart");
