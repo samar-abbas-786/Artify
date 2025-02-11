@@ -27,7 +27,6 @@ export const Signup = async (req, res) => {
     // console.log("token", token);
     res.cookie("token", token, { httpOnly: true });
 
-
     res.status(201).json({ message: "Suucessfully Sign up", newUser });
   } catch (error) {
     console.log("Error occured in sinnup", error);
@@ -42,6 +41,7 @@ export const Login = async (req, res) => {
     }
 
     const existing = await User.findOne({ email });
+
     if (!existing || !(await existing.comparePassword(password))) {
       return res.status(400).json({ message: "Wrong email or password" });
     }
