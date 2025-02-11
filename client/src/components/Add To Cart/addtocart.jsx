@@ -12,9 +12,9 @@ import BottomNavbar from "../Navbar/bottom-nav";
 
 const AddToCart = () => {
   const user = JSON.parse(localStorage.getItem("user"));
+  const [loading, setLaoding] = useState(false);
 
   const [added, setAdded] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [quantities, setQuantities] = useState();
   const [address, setAddress] = useState("");
   const [pincode, setPincode] = useState();
@@ -25,6 +25,7 @@ const AddToCart = () => {
   // Fetch Cart Items
   const getAddedCart = async () => {
     try {
+      
       const response = await axios.get(
         `https://artify-backend-ra4w.onrender.com/api/cart/getAddtocart?userID=${user._id}`
       );

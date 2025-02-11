@@ -9,6 +9,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { AuthContext } from "../Context/authContext";
 import { useNavigate } from "react-router-dom";
+import { BeatLoader } from "react-spinners";
 
 // const SidePart = () => {
 //   const [landscape, setLandscape] = useState(false);
@@ -48,6 +49,7 @@ import { useNavigate } from "react-router-dom";
 const Product = () => {
   // const paintings = Array(10).fill(null);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const [Painting, setPainting] = useState([]);
   const user = JSON.parse(localStorage.getItem("user"));
@@ -64,7 +66,7 @@ const Product = () => {
         return;
       }
       // console.log(user._id);
-
+      setLoading(true);
       const response = await axios.post(
         `https://artify-backend-ra4w.onrender.com/api/cart/addToCart?paintingID=${paintingID}&userID=${user._id}`
       );
@@ -95,6 +97,13 @@ const Product = () => {
 
     fetchPaintings();
   }, []);
+  if (loading) {
+    return (
+      <div className="w-full h-[100vh] flex justify-center items-center">
+        <BeatLoader color="#ff58e6" />
+      </div>
+    );
+  }
 
   return (
     <div className="pb-20">
