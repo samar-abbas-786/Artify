@@ -84,12 +84,14 @@ const Product = () => {
   useEffect(() => {
     const fetchPaintings = async () => {
       try {
+        setLoading(true);
         const response = await axios.get(
           "https://artify-backend-ra4w.onrender.com/api/painting/getAllPainting"
         );
         console.log("getRes", response.data);
 
         setPainting(response.data.allPainting);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching paintings:", error);
       }
@@ -100,7 +102,7 @@ const Product = () => {
   if (loading) {
     return (
       <div className="w-full h-[100vh] flex justify-center items-center">
-        <BeatLoader color="#ff58e6" />
+        <BeatLoader color="orange" />
       </div>
     );
   }

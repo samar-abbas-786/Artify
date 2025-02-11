@@ -5,6 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
+import BottomNavbar from "../Navbar/bottom-nav";
 
 const SignUp = () => {
   const [user, SetUser] = useState({});
@@ -85,6 +86,7 @@ const SignUp = () => {
         </div>
       </div>
       <ToastContainer />
+      <BottomNavbar />
     </div>
   );
 };

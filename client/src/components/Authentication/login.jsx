@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import BottomNavbar from "../Navbar/bottom-nav";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -77,6 +78,7 @@ const Login = () => {
         </div>
       </div>
       <ToastContainer />
+      <BottomNavbar />
     </div>
   );
 };

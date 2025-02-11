@@ -11,6 +11,7 @@ import { RiFolderInfoFill } from "react-icons/ri";
 import { CiLogin } from "react-icons/ci";
 import { CiCalculator1 } from "react-icons/ci";
 import { CgProfile } from "react-icons/cg";
+import { IoIosLogIn } from "react-icons/io";
 
 import axios from "axios";
 import { AuthContext } from "../../Context/authContext";
@@ -44,7 +45,7 @@ const BottomNavbar = () => {
     getAddedCart();
   }, []);
   return (
-    <div className="nav-links z-50 w-full bg-[#D5EAEC] flex text-black h-[65px] justify-evenly items-center fixed bottom-0">
+    <div className="nav-links z-50 shadow-sm shadow-gray-400 w-full bg-white flex text-black h-[65px] justify-evenly items-center fixed bottom-0">
       <Link
         onClick={() => setSelected("Home")}
         to={"/"}
@@ -97,8 +98,9 @@ const BottomNavbar = () => {
           to={"/Login"}
           className={`text ${
             selected == "Login" ? "text-[#FCB080]" : ""
-          } font-serif hover:text-[#FCB080] font-[300]`}
+          } font-serif hover:text-[#FCB080] flex flex-col items-center font-[300]`}
         >
+          <IoIosLogIn size={20} />
           Login
         </Link>
       )}
@@ -112,6 +114,7 @@ const BottomNavbar = () => {
         <IconButton aria-label="cart">
           <StyledBadge badgeContent={count} color="warning">
             <IoCartOutline
+              
               className={`text-black  ${
                 selected == "Cart" ? "text-[#FCB080]" : ""
               } hover:text-[#FCB080]  h-[25px] w-[25px]`}
