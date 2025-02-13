@@ -38,7 +38,7 @@ const SignUp = () => {
   return (
     <div>
       <Navbar />
-      <div className="w-screen h-[85vh] flex justify-center items-center bg-gradient-to-r from-gray-100 to-gray-200">
+      <div className="w-screen h-[100vh] flex justify-center items-center bg-gradient-to-r from-gray-100 to-gray-200 pb-4">
         <div className="form w-[90%] sm:w-[30vw] p-6 bg-white shadow-lg rounded-xl flex flex-col items-center gap-6">
           <h1 className="text-2xl font-semibold text-gray-800">
             Create an Account
@@ -86,7 +86,9 @@ const SignUp = () => {
         </div>
       </div>
       <ToastContainer />
-      <BottomNavbar />
+      <div className="md:hidden">
+        <BottomNavbar />
+      </div>{" "}
     </div>
   );
 };

@@ -78,7 +78,9 @@ const Login = () => {
         </div>
       </div>
       <ToastContainer />
-      <BottomNavbar />
+      <div className="md:hidden">
+        <BottomNavbar />
+      </div>
     </div>
   );
 };
