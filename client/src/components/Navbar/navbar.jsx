@@ -26,7 +26,7 @@ const Navbar = () => {
 
   const getAddedCart = async () => {
     const response = await axios.get(
-      `https://artify-backend-ra4w.onrender.com/api/cart/getAddtocart?userID=${user._id}`
+      `https://artify-uj97.onrender.com/api/cart/getAddtocart?userID=${user._id}`
     );
     if (response) {
       console.log(response);

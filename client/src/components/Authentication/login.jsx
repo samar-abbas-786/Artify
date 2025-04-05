@@ -13,7 +13,7 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const response = await axios.post(
-        "https://artify-backend-ra4w.onrender.com/api/user/Login",
+        "https://artify-uj97.onrender.com/api/user/Login",
         {
           email,
           password,

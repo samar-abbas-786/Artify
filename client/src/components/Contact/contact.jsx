@@ -15,7 +15,7 @@ const Contact = () => {
     }
     try {
       const response = await axios.post(
-        "https://artify-backend-ra4w.onrender.com/api/contact/PostQuery",
+        "https://artify-uj97.onrender.com/api/contact/PostQuery",
         {
           name,
           email,

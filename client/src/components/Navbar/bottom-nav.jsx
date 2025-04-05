@@ -31,7 +31,7 @@ const BottomNavbar = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const getAddedCart = async () => {
     const response = await axios.get(
-      `https://artify-backend-ra4w.onrender.com/api/cart/getAddtocart?userID=${user._id}`
+      `https://artify-uj97.onrender.com/api/cart/getAddtocart?userID=${user._id}`
     );
     if (response) {
       // console.log(response);
@@ -114,7 +114,6 @@ const BottomNavbar = () => {
         <IconButton aria-label="cart">
           <StyledBadge badgeContent={count} color="warning">
             <IoCartOutline
-              
               className={`text-black  ${
                 selected == "Cart" ? "text-[#FCB080]" : ""
               } hover:text-[#FCB080]  h-[25px] w-[25px]`}

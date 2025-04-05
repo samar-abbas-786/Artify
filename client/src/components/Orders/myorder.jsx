@@ -10,7 +10,7 @@ const MyOrder = () => {
   const getMyOrder = async () => {
     try {
       const response = await axios.get(
-        `https://artify-backend-ra4w.onrender.com/api/order/getMyOrder?userID=${user._id}`
+        `https://artify-uj97.onrender.com/api/order/getMyOrder?userID=${user._id}`
       );
       console.log(response.data);
       setOrders(response.data.flattenedPaintings);
@@ -47,7 +47,7 @@ const MyOrder = () => {
                 className="flex items-center bg-white/90 backdrop-blur-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 p-4 w-full"
               >
                 <img
-                  src={`https://artify-backend-ra4w.onrender.com/uploads/${order?.image}`}
+                  src={`https://artify-uj97.onrender.com/uploads/${order?.image}`}
                   alt={order.name}
                   className="w-24 h-24 rounded-lg shadow-md object-cover"
                 />

@@ -25,7 +25,7 @@ const NewArrival = () => {
       console.log(user._id);
 
       const response = await axios.post(
-        `https://artify-backend-ra4w.onrender.com/api/cart/addToCart?paintingID=${paintingID}&userID=${user._id}`
+        `https://artify-uj97.onrender.com/api/cart/addToCart?paintingID=${paintingID}&userID=${user._id}`
       );
       console.log(response.data);
       navigate("/Add-To-Cart");
@@ -41,7 +41,7 @@ const NewArrival = () => {
   const getNewArrival = async () => {
     try {
       const response = await axios.get(
-        "https://artify-backend-ra4w.onrender.com/api/painting/getNewArrival"
+        "https://artify-uj97.onrender.com/api/painting/getNewArrival"
       );
       console.log("res", response);
 
@@ -78,7 +78,7 @@ const NewArrival = () => {
               <div className="group border-[1px] border-black block1 shadow-black w-[70vw] md:w-[20vw] md:h-[350px] bg-gray-50">
                 <img
                   className="w-full h-[300px] object-fill"
-                  src={`https://artify-backend-ra4w.onrender.com/uploads/${painting.image}`}
+                  src={`https://artify-uj97.onrender.com/uploads/${painting.image}`}
                   alt={painting.name}
                 />
                 <div className="flex items-center justify-between px-2 text-lg font-serif p-2">
