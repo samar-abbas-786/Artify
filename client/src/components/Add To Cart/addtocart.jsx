@@ -48,7 +48,6 @@ const AddToCart = () => {
         `https://artify-uj97.onrender.com/api/cart/RemovefromCart?paintingID=${id}&userID=${user._id}`
       );
       setAdded((prev) => prev.filter((item) => item._id !== id));
-      window.location.reload(false);
     } catch (error) {
       toast(error.message);
     }
